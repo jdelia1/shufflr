@@ -6,30 +6,51 @@
 import javax.sound.sampled.AudioFileFormat;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+
+import com.sun.org.apache.xpath.internal.operations.Bool;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
+import javafx.util.Duration;
 
 
 public class Song {
-    private String name, artist, album, pts;
-    private Media song_player;
-    private Integer length;
+    private String name, artist, album, pts, genre, composer;
+    private Integer track, total_tracks;
+    private Media song_audio;
+    private Duration length;
+    private Boolean run = false;
     private List<Integer> playlists = new ArrayList<Integer>();
 
-    public Song(String path_to_song, String song_name, String song_artist, String song_album, Integer song_length){
-        pts = path_to_song;  // Local path to song
-        song_player = new Media(pts);
-        name = song_name;
-        artist = song_artist;
-        album = song_album;
-        length = song_length;
+    public Song(String path_to_song){
+        pts = path_to_song;
+        song_audio = new Media(pts);
+        MediaPlayer mediaPlayer = new MediaPlayer(song_audio);
+        mediaPlayer.setOnReady(new Runnable() {
+
+            @Override
+            public void run() {
+
+                length = song_audio.getDuration();
+                name = song_audio.getMetadata().get("title").toString();
+                artist = song_audio.getMetadata().get("artist").toString();
+                album = song_audio.getMetadata().get("album").toString();
+                track = (Integer) song_audio.getMetadata().get("track number");
+                total_tracks = (Integer) song_audio.getMetadata().get("track count");
+                genre = song_audio.getMetadata().get("genre").toString();
+                composer = song_audio.getMetadata().get("composer").toString();
+                run = true;
+
+            }
+        });
+
     }
 
     // Song has been added to a playlist
     public void addPlaylist(Integer pl_index){
         playlists.add(pl_index);
     }
-
+    
     public String getName(){
         return name;
     }
@@ -42,8 +63,32 @@ public class Song {
         return album;
     }
 
-    public Integer getLength(){
+    public String getGenre() {
+        return genre;
+    }
+
+    public String getComposer() {
+        return composer;
+    }
+
+    public Integer getTrackNumber() {
+        return track;
+    }
+
+    public Integer getTotalTracks() {
+        return total_tracks;
+    }
+
+    public Duration getSongLength(){
         return length;
+    }
+
+    public Boolean canRun(){
+        return run;
+    }
+
+    public Media getAudio(){
+        return song_audio;
     }
 
     public List<Integer> getPlaylists(){

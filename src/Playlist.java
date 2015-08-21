@@ -3,6 +3,7 @@
  * Last Edited on 8/21/2015.
  */
 
+import java.time.Duration;
 import java.util.ArrayList;
 import java.util.List;
 import javafx.scene.media.Media;
@@ -11,13 +12,13 @@ import javafx.scene.media.MediaPlayer;
 
 public class Playlist {
     private String name;
-    private Integer length, num_songs;
+    private Integer num_songs;
+    private Duration length;
     private Boolean can_be_deleted;
     private List<Song> songs = new ArrayList<Song>();
 
     public Playlist(String pl_name){
         name = pl_name;
-        length = 0;
         num_songs = 0;
         can_be_deleted = true;
     }
@@ -25,20 +26,17 @@ public class Playlist {
     // Constructor for "Master Playlist" which is just the list of all songs.
     public Playlist(){
         name = "Master Playlist";
-        length = 0;
         num_songs = 0;
         can_be_deleted = false;  // Cannot delete master playlist, it contains all songs.
     }
 
     public void addSongToPlaylist(Song song){
         songs.add(song);
-        length += song.getLength();
         num_songs++;
     }
 
     public void removeSongFromPlaylist(Song song){
         songs.remove(song);
-        length -= song.getLength();
         num_songs--;
     }
 
@@ -46,7 +44,7 @@ public class Playlist {
         return name;
     }
 
-    public Integer getPlaylistLength(){
+    public Duration getPlaylistLength(){
         return length;
     }
 
