@@ -17,7 +17,7 @@ public class Song {
     private List<Integer> playlists = new ArrayList<Integer>();
 
     public Song(String path_to_song, String song_name, String song_artist, String song_album, Integer song_length){
-        pts = path_to_song;
+        pts = path_to_song;  // Local path to song
         song_player = new Media(pts);
         name = song_name;
         artist = song_artist;

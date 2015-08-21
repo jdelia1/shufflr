@@ -8,13 +8,19 @@ import java.util.LinkedList;
 
 public class Waitlist {
     Queue<Song> waitlist;
+    Integer songs_in_queue, max_songs;
 
-    public Waitlist(){
+    public Waitlist(Integer max){
         waitlist = new LinkedList<Song>();
+        max_songs = max;
     }
 
     public void addSongToWaitlist(Song song){
         waitlist.add(song);
+        songs_in_queue++;
+        if(songs_in_queue > max_songs){
+            this.returnSong();
+        }
     }
 
     public Song returnSong(){
