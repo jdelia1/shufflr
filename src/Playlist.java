@@ -1,6 +1,6 @@
 /**
  * Created by Joe Delia on 8/20/2015.
- * Last Edited on 8/20/2015.
+ * Last Edited on 8/21/2015.
  */
 
 import java.util.ArrayList;
@@ -20,6 +20,7 @@ public class Playlist {
         can_be_deleted = true;
     }
 
+    // Constructor for "Master Playlist" which is just the list of all songs.
     public Playlist(){
         name = "Master Playlist";
         length = 0;
