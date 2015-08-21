@@ -5,6 +5,8 @@
 
 import java.util.ArrayList;
 import java.util.List;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 
 
 public class Playlist {
@@ -50,6 +52,10 @@ public class Playlist {
 
     public Integer getNumberOfSongs(){
         return num_songs;
+    }
+
+    public Boolean getDelete(){
+        return can_be_deleted;
     }
 
     public List<Song> getPlaylistContents(){

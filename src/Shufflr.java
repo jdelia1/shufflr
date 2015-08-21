@@ -1,8 +1,11 @@
 /**
  * Created by Joe Delia on 8/20/2015.
- * Last Edited on 8/20/2015.
+ * Last Edited on 8/21/2015.
  */
+
 import java.util.ArrayList;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 
 
 public class Shufflr {
@@ -10,6 +13,9 @@ public class Shufflr {
     public static void main(String[] args){
         // Playlist of all songs available. Not able to be deleted.
         Playlist master_playlist = new Playlist();
+
+        // MediaPlayer object to play the music
+        MediaPlayer player;
 
         /* Songs are added back in to the song pool by:
         (0) Fixed Number (DEFAULT)
@@ -19,11 +25,11 @@ public class Shufflr {
         int num_songs = -1, num_seconds = -1, num_percentage = -1;
 
         if(add_songs_style == 0){
-            num_songs = 20; // Start adding songs back to list after 20 plays
+            num_songs = 20;  // Start adding songs back to list after 20 plays
         }else if(add_songs_style == 1){
-            num_seconds = 1800; // Start adding songs back after 30 minutes
+            num_seconds = 1800;  // Start adding songs back after 30 minutes
         }else{
-            num_percentage = 50; // Start adding songs back after 50% of playlist
+            num_percentage = 50;  // Start adding songs back after 50% of playlist
         }
     }
 
