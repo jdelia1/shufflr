@@ -1,6 +1,6 @@
 /**
  * Created by Joe Delia on 8/20/2015.
- * Last Edited on 8/21/2015.
+ * Last Edited on 8/22/2015.
  */
 
 import javax.sound.sampled.AudioFileFormat;
@@ -79,8 +79,22 @@ public class Song {
         return total_tracks;
     }
 
-    public Duration getSongLength(){
+    // Returns length of song in default duration form
+    public Duration getDuration() {
         return length;
+    }
+
+    // Returns length of song in usable double form
+    public Double getSongLength(){
+        String[] length_str = length.toString().split("\\s+");
+        Double length_float;
+        try{
+            length_float = Double.parseDouble(length_str[0]);
+        }catch (NumberFormatException e) {
+            length_float = -1.0;  // Failed, duration couldn't convert to int
+        }
+
+        return length_float;
     }
 
     public Boolean canRun(){
