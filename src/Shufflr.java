@@ -19,6 +19,8 @@ public class Shufflr {
         JFXPanel fxPanel = new JFXPanel();
         // Playlist of all songs available. Not able to be deleted.
         Playlist master_playlist = new Playlist();
+        // Exit boolean
+        Boolean exit = false;
 
         // Gather song paths from a directory
         String raw_d = "C:/Users/Joe/Desktop/TwentyonePilots_Blurryface";  // Local path to music directory
@@ -31,24 +33,29 @@ public class Shufflr {
         }
 
         List<Song> current_playlist = master_playlist.getPlaylistContents();
-        Random rand = new Random();
-        Song current_song = current_playlist.get(rand.nextInt(current_playlist.size()));
 
-        /*String song_path = "03_Ride.mp3";  // The local path to your song.
-        Song current_song = new Song(song_path);  // Creates song instance*/
+        while (!exit) {
+            Random rand = new Random();
+            Song current_song = current_playlist.get(rand.nextInt(current_playlist.size()));
 
-        // Wait for Song object to be set up before starting the song, so metadata will be available.
-        while (!current_song.canRun()){
-            try {
-                Thread.sleep(1);
-            } catch(InterruptedException ex) {
-                Thread.currentThread().interrupt();
+            /*String song_path = "03_Ride.mp3";  // The local path to your song.
+            Song current_song = new Song(song_path);  // Creates song instance*/
+
+            // Wait for Song object to be set up before starting the song, so metadata will be available.
+            while (!current_song.canRun()) {
+                try {
+                    Thread.sleep(1);
+                } catch (InterruptedException ex) {
+                    Thread.currentThread().interrupt();
+                }
             }
+
+            // Once the song is properly set up, play the song.
+            playSong(current_song);
         }
 
-        // Once the song is properly set up, play the song.
-        playSong(current_song);
-        System.out.println("Returned to Main function");
+        // If everything runs correctly, abort all threads and end with no error.
+        System.exit(0);
     }
 
     private static List<String> gatherSongsFromDirectory(File base_directory, List<String> files){
@@ -82,39 +89,32 @@ public class Shufflr {
     private static void playSong(Song song_to_play){
         Media audio = song_to_play.getAudio();
         mediaPlayer = new MediaPlayer(audio);
-        mediaPlayer.setOnReady(new Runnable() {
 
-            @Override
-            public void run() {
+        System.out.println("Now Playing: " + song_to_play.getName() + " by " + song_to_play.getArtist());
+        System.out.println("\tOff the album " + song_to_play.getAlbum());
 
-                System.out.println("Now Playing: " + song_to_play.getName() + " by " + song_to_play.getArtist());
-                System.out.println("\tOff the album " + song_to_play.getAlbum());
+        Double song_raw_time = song_to_play.getSongLength()/1000;
+        Integer song_minutes = song_raw_time.intValue()/60;
+        Integer song_seconds = song_raw_time.intValue()%60;
+        String seconds;
+        if (song_seconds < 10){
+            seconds = "0" + Integer.toString(song_seconds);
+        }else{
+            seconds = Integer.toString(song_seconds);
+        }
+        System.out.println("\tSong Length - " + song_minutes + ":" + seconds);
 
-                Double song_raw_time = song_to_play.getSongLength()/1000;
-                Integer song_minutes = song_raw_time.intValue()/60;
-                Integer song_seconds = song_raw_time.intValue()%60;
-                String seconds;
-                if (song_seconds < 10){
-                    seconds = "0" + Integer.toString(song_seconds);
-                }else{
-                    seconds = Integer.toString(song_seconds);
-                }
-                System.out.println("\tSong Length - " + song_minutes + ":" + seconds);
-
-                Double timer = 0.0;
-                mediaPlayer.play();
-                while (timer < song_to_play.getSongLength()/1000){
-                    try {
-                        Thread.sleep(1000);
-                        timer += 1.0;
-                    } catch(InterruptedException ex) {
-                        Thread.currentThread().interrupt();
-                    }
-                }
-                System.out.println();
-                System.out.println("Song Ended");
+        Double timer = 0.0;
+        mediaPlayer.play();
+        while (timer < song_to_play.getSongLength()/1000){
+            try {
+                Thread.sleep(1000);
+                timer += 1.0;
+            } catch(InterruptedException ex) {
+                Thread.currentThread().interrupt();
             }
-        });
+        }
+        System.out.println();
 
         // Could also play media in this way:
         // AudioClip player = new AudioClip(audio.getSource());

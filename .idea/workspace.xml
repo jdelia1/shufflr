@@ -25,12 +25,12 @@
       <file leaf-file-name="Shufflr.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/Shufflr.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.5691964">
-              <caret line="87" column="31" selection-start-line="87" selection-start-column="31" selection-end-line="87" selection-end-column="31" />
+            <state vertical-scroll-proportion="0.68303573">
+              <caret line="117" column="0" selection-start-line="117" selection-start-column="0" selection-end-line="117" selection-end-column="0" />
               <folding>
                 <element signature="n#!!doc" expanded="true" />
                 <element signature="imports" expanded="true" />
-                <element signature="e#2531#2539#0" expanded="true" />
+                <element signature="e#2728#2736#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -482,7 +482,7 @@
           <folding>
             <element signature="n#!!doc" expanded="true" />
             <element signature="imports" expanded="true" />
-            <element signature="e#2531#2539#0" expanded="true" />
+            <element signature="e#2728#2736#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -537,7 +537,7 @@
           <folding>
             <element signature="n#!!doc" expanded="true" />
             <element signature="imports" expanded="true" />
-            <element signature="e#2531#2539#0" expanded="true" />
+            <element signature="e#2728#2736#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -592,7 +592,7 @@
           <folding>
             <element signature="n#!!doc" expanded="true" />
             <element signature="imports" expanded="true" />
-            <element signature="e#2531#2539#0" expanded="true" />
+            <element signature="e#2728#2736#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -647,7 +647,7 @@
           <folding>
             <element signature="n#!!doc" expanded="true" />
             <element signature="imports" expanded="true" />
-            <element signature="e#2531#2539#0" expanded="true" />
+            <element signature="e#2728#2736#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -745,12 +745,12 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Shufflr.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.5691964">
-          <caret line="87" column="31" selection-start-line="87" selection-start-column="31" selection-end-line="87" selection-end-column="31" />
+        <state vertical-scroll-proportion="0.68303573">
+          <caret line="117" column="0" selection-start-line="117" selection-start-column="0" selection-end-line="117" selection-end-column="0" />
           <folding>
             <element signature="n#!!doc" expanded="true" />
             <element signature="imports" expanded="true" />
-            <element signature="e#2531#2539#0" expanded="true" />
+            <element signature="e#2728#2736#0" expanded="true" />
           </folding>
         </state>
       </provider>
