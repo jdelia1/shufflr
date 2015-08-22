@@ -1,9 +1,11 @@
 /**
  * Created by Joe Delia on 8/20/2015.
- * Last Edited on 8/21/2015.
+ * Last Edited on 8/22/2015.
  */
 
 import java.io.*;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import javafx.embed.swing.JFXPanel;
@@ -21,6 +23,11 @@ public class Shufflr {
         // Playlist of all songs available. Not able to be deleted.
         Playlist master_playlist = new Playlist();
 
+        String raw_d = "";  // Local path to music directory
+        File d = new File(raw_d);
+        List<String> song_list = gatherSongsFromDirectory(d);
+        System.out.println(song_list);
+
         String raw_path = "";  // The local path to your song.
         String song_path = new File(raw_path).toURI().toString();  // Creates useable path to play song.
         Song current_song = new Song(song_path);  // Creates song instance
@@ -32,17 +39,41 @@ public class Shufflr {
             } catch(InterruptedException ex) {
                 Thread.currentThread().interrupt();
             }
-
         }
+
         // Once the song is properly set up, play the song.
         playSong(current_song);
     }
 
-    public static void gatherSongsFromDirectory(String directory){
+    private static List<String> gatherSongsFromDirectory(File base_directory, List<String> files){
+        if (".mp3".equals(fileExtension(base_directory))){
+            files.add(base_directory.toString());
+        }
+        if (base_directory.isDirectory()) {
+            String[] children = base_directory.list();
+            for (int i = 0; i < children.length; i++) {
+                gatherSongsFromDirectory(new File(base_directory, children[i]), files);
+            }
+        }
 
+        return files;
     }
 
-    public static void playSong(Song song_to_play){
+    private static List<String> gatherSongsFromDirectory(File base_directory){
+        List<String> files = new ArrayList<String>();
+        return gatherSongsFromDirectory(base_directory, files);
+    }
+
+    private static String fileExtension(File file) {
+        String name = file.getName();
+        try {
+            return name.substring(name.lastIndexOf("."));
+        } catch (Exception e) {
+            return "";
+        }
+    }
+
+    private static void playSong(Song song_to_play){
         Media audio = song_to_play.getAudio();
         mediaPlayer = new MediaPlayer(audio);
         mediaPlayer.setOnReady(new Runnable() {
