@@ -22,16 +22,26 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="Shufflr.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Shufflr.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Shufflr.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.75656325">
-              <caret line="38" column="9" selection-start-line="38" selection-start-column="9" selection-end-line="38" selection-end-column="9" />
+            <state vertical-scroll-proportion="-9.172414">
+              <caret line="29" column="74" selection-start-line="29" selection-start-column="74" selection-end-line="29" selection-end-column="74" />
               <folding>
                 <element signature="n#!!doc" expanded="true" />
                 <element signature="imports" expanded="true" />
-                <element signature="e#2120#2128#0" expanded="true" />
+                <element signature="e#2178#2186#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name=".gitignore" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/.gitignore">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.08076009">
+              <caret line="2" column="4" selection-start-line="2" selection-start-column="4" selection-end-line="2" selection-end-column="4" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -102,6 +112,7 @@
         <option value="$PROJECT_DIR$/src/Song.java" />
         <option value="$PROJECT_DIR$/src/Playlist.java" />
         <option value="$PROJECT_DIR$/src/Shufflr.java" />
+        <option value="$PROJECT_DIR$/.gitignore" />
       </list>
     </option>
   </component>
@@ -474,7 +485,7 @@
           <folding>
             <element signature="n#!!doc" expanded="true" />
             <element signature="imports" expanded="true" />
-            <element signature="e#2120#2128#0" expanded="true" />
+            <element signature="e#2178#2186#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -522,7 +533,7 @@
           <folding>
             <element signature="n#!!doc" expanded="true" />
             <element signature="imports" expanded="true" />
-            <element signature="e#2120#2128#0" expanded="true" />
+            <element signature="e#2178#2186#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -570,7 +581,7 @@
           <folding>
             <element signature="n#!!doc" expanded="true" />
             <element signature="imports" expanded="true" />
-            <element signature="e#2120#2128#0" expanded="true" />
+            <element signature="e#2178#2186#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -638,13 +649,21 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Shufflr.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.75656325">
-          <caret line="38" column="9" selection-start-line="38" selection-start-column="9" selection-end-line="38" selection-end-column="9" />
+        <state vertical-scroll-proportion="-9.172414">
+          <caret line="29" column="74" selection-start-line="29" selection-start-column="74" selection-end-line="29" selection-end-column="74" />
           <folding>
             <element signature="n#!!doc" expanded="true" />
             <element signature="imports" expanded="true" />
-            <element signature="e#2120#2128#0" expanded="true" />
+            <element signature="e#2178#2186#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.08076009">
+          <caret line="2" column="4" selection-start-line="2" selection-start-column="4" selection-end-line="2" selection-end-column="4" />
+          <folding />
         </state>
       </provider>
     </entry>

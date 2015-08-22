@@ -20,12 +20,12 @@ public class Shufflr {
         // Playlist of all songs available. Not able to be deleted.
         Playlist master_playlist = new Playlist();
 
-        String raw_d = "";  // Local path to music directory
+        String raw_d = "C:/Users/Joe/Desktop/TwentyonePilots_Blurryface";  // Local path to music directory
         File d = new File(raw_d);
         List<String> song_list = gatherSongsFromDirectory(d);
         System.out.println(song_list);
 
-        String raw_path = "";  // The local path to your song.
+        String raw_path = "03_Ride.mp3";  // The local path to your song.
         String song_path = new File(raw_path).toURI().toString();  // Creates useable path to play song.
         Song current_song = new Song(song_path);  // Creates song instance
 
