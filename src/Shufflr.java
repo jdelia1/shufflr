@@ -4,10 +4,7 @@
  */
 
 import java.io.*;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 import javafx.embed.swing.JFXPanel;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
@@ -23,12 +20,12 @@ public class Shufflr {
         // Playlist of all songs available. Not able to be deleted.
         Playlist master_playlist = new Playlist();
 
-        String raw_d = "C://Users/Joe/Desktop/TwentyonePilots_Blurryface";  // Local path to music directory
+        String raw_d = "";  // Local path to music directory
         File d = new File(raw_d);
         List<String> song_list = gatherSongsFromDirectory(d);
         System.out.println(song_list);
 
-        String raw_path = "03_Ride.mp3";  // The local path to your song.
+        String raw_path = "";  // The local path to your song.
         String song_path = new File(raw_path).toURI().toString();  // Creates useable path to play song.
         Song current_song = new Song(song_path);  // Creates song instance
 
@@ -83,8 +80,24 @@ public class Shufflr {
 
                 System.out.println("Now Playing: " + song_to_play.getName() + " by " + song_to_play.getArtist());
                 System.out.println("\tOff the album " + song_to_play.getAlbum());
-                System.out.println("\tSong Length: " + song_to_play.getSongLength().toString());
+
+                Double song_raw_time = song_to_play.getSongLength()/1000;
+                Integer song_minutes = song_raw_time.intValue()/60;
+                Integer song_seconds = song_raw_time.intValue()%60;
+                System.out.println("\tSong Length - " + song_minutes + ":" + song_seconds);
+
+                Double timer = 0.0;
                 mediaPlayer.play();
+                while (timer < song_to_play.getSongLength()/1000){
+                    try {
+                        Thread.sleep(1000);
+                        timer += 1.0;
+                    } catch(InterruptedException ex) {
+                        Thread.currentThread().interrupt();
+                    }
+                }
+                System.out.println();
+                System.out.println("Song Ended");
             }
         });
 
