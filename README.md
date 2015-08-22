@@ -3,9 +3,8 @@ Shufflr is a Java based music player app that features vastly expanded shuffling
 
 ### Implemented Features
  - Shufflr will take a single file path, and recursively grab all .mp3 files within that directory, and all subdirectories.
- - Shufflr will take a single .mp3 file's path, and play only that song (independent functionality of the recursive grab).
-   - Shufflr will create a Song instance, which records the metadata available from the .mp3 file, its length, and create a Media object of the .mp3 file, that can be played by a MediaPlayer object.
- - Shufflr will print to the console when the .mp3 file is done playing.
+ - Shufflr will create Song instances of every .mp3 file it grabs, and put them into a master playlist.
+ - Shufflr will play all of the Song objects it has randomly, without moving them out of the play queue.
  - Partially implemented Playlist class
  - Partially implemented Waitlist class
  
