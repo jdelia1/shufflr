@@ -4,6 +4,7 @@
  */
 
 import javax.sound.sampled.AudioFileFormat;
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -23,7 +24,8 @@ public class Song {
     private List<Integer> playlists = new ArrayList<Integer>();
 
     public Song(String path_to_song){
-        pts = path_to_song;
+        String raw_pts = path_to_song;
+        pts = new File(raw_pts).toURI().toString();
         song_audio = new Media(pts);
         MediaPlayer mediaPlayer = new MediaPlayer(song_audio);
         mediaPlayer.setOnReady(new Runnable() {

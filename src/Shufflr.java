@@ -20,14 +20,22 @@ public class Shufflr {
         // Playlist of all songs available. Not able to be deleted.
         Playlist master_playlist = new Playlist();
 
+        // Gather song paths from a directory
         String raw_d = "C:/Users/Joe/Desktop/TwentyonePilots_Blurryface";  // Local path to music directory
         File d = new File(raw_d);
         List<String> song_list = gatherSongsFromDirectory(d);
-        System.out.println(song_list);
 
-        String raw_path = "03_Ride.mp3";  // The local path to your song.
-        String song_path = new File(raw_path).toURI().toString();  // Creates useable path to play song.
-        Song current_song = new Song(song_path);  // Creates song instance
+        // Add all songs from directory to the master playlist
+        for (String song_path : song_list){
+            master_playlist.addSongToPlaylist(new Song(song_path));
+        }
+
+        List<Song> current_playlist = master_playlist.getPlaylistContents();
+        Random rand = new Random();
+        Song current_song = current_playlist.get(rand.nextInt(current_playlist.size()));
+
+        /*String song_path = "03_Ride.mp3";  // The local path to your song.
+        Song current_song = new Song(song_path);  // Creates song instance*/
 
         // Wait for Song object to be set up before starting the song, so metadata will be available.
         while (!current_song.canRun()){
@@ -40,6 +48,7 @@ public class Shufflr {
 
         // Once the song is properly set up, play the song.
         playSong(current_song);
+        System.out.println("Returned to Main function");
     }
 
     private static List<String> gatherSongsFromDirectory(File base_directory, List<String> files){
@@ -84,7 +93,13 @@ public class Shufflr {
                 Double song_raw_time = song_to_play.getSongLength()/1000;
                 Integer song_minutes = song_raw_time.intValue()/60;
                 Integer song_seconds = song_raw_time.intValue()%60;
-                System.out.println("\tSong Length - " + song_minutes + ":" + song_seconds);
+                String seconds;
+                if (song_seconds < 10){
+                    seconds = "0" + Integer.toString(song_seconds);
+                }else{
+                    seconds = Integer.toString(song_seconds);
+                }
+                System.out.println("\tSong Length - " + song_minutes + ":" + seconds);
 
                 Double timer = 0.0;
                 mediaPlayer.play();

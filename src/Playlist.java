@@ -15,6 +15,7 @@ public class Playlist {
     private Integer num_songs;
     private Double length;
     private Boolean can_be_deleted;
+    private Waitlist waitlist;
     private List<Song> songs = new ArrayList<Song>();
 
     public Playlist(String pl_name){
@@ -34,7 +35,19 @@ public class Playlist {
 
     public void addSongToPlaylist(Song song){
         songs.add(song);
-        length += song.getSongLength();
+        Boolean success = false;
+        while (!success) {
+            try {
+                length += song.getSongLength();
+                success = true;
+            } catch (Exception e) {
+                try {
+                    Thread.sleep(1);
+                } catch (InterruptedException ex) {
+                    Thread.currentThread().interrupt();
+                }
+            }
+        }
         num_songs++;
     }
 
