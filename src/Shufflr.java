@@ -19,8 +19,8 @@ public class Shufflr {
         JFXPanel fxPanel = new JFXPanel();
         // Playlist of all songs available. Not able to be deleted.
         Playlist master_playlist = new Playlist();
-        // Exit boolean
-        Boolean exit = false;
+        // Exit
+        Integer EXIT = 3;  // Ends shufflr after 3 songs by default. Change value for more/less.
 
         // Gather song paths from a directory
         String raw_d = "C:/Users/Joe/Desktop/TwentyonePilots_Blurryface";  // Local path to music directory
@@ -34,7 +34,7 @@ public class Shufflr {
 
         List<Song> current_playlist = master_playlist.getPlaylistContents();
 
-        while (!exit) {
+        for (int i=0; i<EXIT; i++) {
             Random rand = new Random();
             Song current_song = current_playlist.get(rand.nextInt(current_playlist.size()));
 
