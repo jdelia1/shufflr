@@ -1,10 +1,11 @@
 /**
  * Created by Joe Delia on 8/21/2015.
- * Last Edited on 8/22/2015.
+ * Last Edited on 8/23/2015.
  */
 
 import java.util.Queue;
 import java.util.LinkedList;
+
 
 public class Waitlist {
     Integer DEFAULT = 4;

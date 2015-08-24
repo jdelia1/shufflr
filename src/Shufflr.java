@@ -23,7 +23,7 @@ public class Shufflr {
         Integer EXIT = 3;  // Ends shufflr after 3 songs by default. Change value for more/less.
 
         // Gather song paths from a directory
-        String raw_d = "C:/Users/Joe/Desktop/TwentyonePilots_Blurryface";  // Local path to music directory
+        String raw_d = "";  // Local path to music directory
         File d = new File(raw_d);
         List<String> song_list = gatherSongsFromDirectory(d);
 
@@ -37,9 +37,6 @@ public class Shufflr {
         for (int i=0; i<EXIT; i++) {
             Random rand = new Random();
             Song current_song = current_playlist.get(rand.nextInt(current_playlist.size()));
-
-            /*String song_path = "03_Ride.mp3";  // The local path to your song.
-            Song current_song = new Song(song_path);  // Creates song instance*/
 
             // Wait for Song object to be set up before starting the song, so metadata will be available.
             while (!current_song.canRun()) {
