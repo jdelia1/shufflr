@@ -1,6 +1,6 @@
 /**
  * Created by Joe Delia on 8/20/2015.
- * Last Edited on 8/22/2015.
+ * Last Edited on 8/24/2015.
  */
 
 import javax.sound.sampled.AudioFileFormat;
@@ -52,7 +52,7 @@ public class Song {
     public void addPlaylist(Integer pl_index){
         playlists.add(pl_index);
     }
-    
+
     public String getName(){
         return name;
     }
@@ -99,7 +99,7 @@ public class Song {
         return length_float;
     }
 
-    public Boolean canRun(){
+    public Boolean isReady(){
         return run;
     }
 

@@ -1,6 +1,6 @@
 /**
  * Created by Joe Delia on 8/20/2015.
- * Last Edited on 8/22/2015.
+ * Last Edited on 8/24/2015.
  */
 
 import java.io.*;
@@ -23,13 +23,22 @@ public class Shufflr {
         Integer EXIT = 3;  // Ends shufflr after 3 songs by default. Change value for more/less.
 
         // Gather song paths from a directory
-        String raw_d = "";  // Local path to music directory
+        String raw_d = "C:/Users/Joe/Desktop/TwentyonePilots_Blurryface";  // Local path to music directory
         File d = new File(raw_d);
         List<String> song_list = gatherSongsFromDirectory(d);
 
         // Add all songs from directory to the master playlist
         for (String song_path : song_list){
-            master_playlist.addSongToPlaylist(new Song(song_path));
+            Song temp_song = new Song(song_path);
+            while (!temp_song.isReady()){
+                try {
+                    Thread.sleep(1);
+                } catch (InterruptedException ex) {
+                    Thread.currentThread().interrupt();
+                }
+
+            }
+            master_playlist.addSongToPlaylist(temp_song);
         }
 
         List<Song> current_playlist = master_playlist.getPlaylistContents();
@@ -38,16 +47,6 @@ public class Shufflr {
             Random rand = new Random();
             Song current_song = current_playlist.get(rand.nextInt(current_playlist.size()));
 
-            // Wait for Song object to be set up before starting the song, so metadata will be available.
-            while (!current_song.canRun()) {
-                try {
-                    Thread.sleep(1);
-                } catch (InterruptedException ex) {
-                    Thread.currentThread().interrupt();
-                }
-            }
-
-            // Once the song is properly set up, play the song.
             playSong(current_song);
         }
 
@@ -89,17 +88,7 @@ public class Shufflr {
 
         System.out.println("Now Playing: " + song_to_play.getName() + " by " + song_to_play.getArtist());
         System.out.println("\tOff the album " + song_to_play.getAlbum());
-
-        Double song_raw_time = song_to_play.getSongLength()/1000;
-        Integer song_minutes = song_raw_time.intValue()/60;
-        Integer song_seconds = song_raw_time.intValue()%60;
-        String seconds;
-        if (song_seconds < 10){
-            seconds = "0" + Integer.toString(song_seconds);
-        }else{
-            seconds = Integer.toString(song_seconds);
-        }
-        System.out.println("\tSong Length - " + song_minutes + ":" + seconds);
+        System.out.println("\tSong Length - " + milliToReadable(song_to_play.getSongLength()));
 
         Double timer = 0.0;
         mediaPlayer.play();
@@ -116,6 +105,22 @@ public class Shufflr {
         // Could also play media in this way:
         // AudioClip player = new AudioClip(audio.getSource());
         // player.play();
+    }
+
+    private static String milliToReadable(Double millis){
+        Double song_raw_time = millis/1000.0;
+        Integer song_minutes = song_raw_time.intValue()/60;
+        Integer song_seconds = song_raw_time.intValue()%60;
+        String seconds;
+        if (song_seconds < 10){
+            seconds = "0" + Integer.toString(song_seconds);
+        }else{
+            seconds = Integer.toString(song_seconds);
+        }
+
+        String readable_form = song_minutes + ":" + seconds;
+
+        return readable_form;
     }
 
 }
