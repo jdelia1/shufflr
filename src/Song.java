@@ -24,8 +24,7 @@ public class Song {
     private List<Integer> playlists = new ArrayList<Integer>();
 
     public Song(String path_to_song){
-        String raw_pts = path_to_song;
-        pts = new File(raw_pts).toURI().toString();
+        pts = new File(path_to_song).toURI().toString();
         song_audio = new Media(pts);
         MediaPlayer mediaPlayer = new MediaPlayer(song_audio);
         mediaPlayer.setOnReady(new Runnable() {

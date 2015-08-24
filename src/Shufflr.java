@@ -18,12 +18,12 @@ public class Shufflr {
         // JFX Panel
         JFXPanel fxPanel = new JFXPanel();
         // Playlist of all songs available. Not able to be deleted.
-        Playlist master_playlist = new Playlist();
+        Playlist master_playlist = new Playlist(0);
         // Exit
         Integer EXIT = 3;  // Ends shufflr after 3 songs by default. Change value for more/less.
 
         // Gather song paths from a directory
-        String raw_d = "C:/Users/Joe/Desktop/TwentyonePilots_Blurryface";  // Local path to music directory
+        String raw_d = "";  // Local path to music directory
         File d = new File(raw_d);
         List<String> song_list = gatherSongsFromDirectory(d);
 
@@ -31,23 +31,17 @@ public class Shufflr {
         for (String song_path : song_list){
             Song temp_song = new Song(song_path);
             while (!temp_song.isReady()){
-                try {
-                    Thread.sleep(1);
-                } catch (InterruptedException ex) {
-                    Thread.currentThread().interrupt();
-                }
-
+                try { Thread.sleep(1);}
+                catch (InterruptedException ex) { Thread.currentThread().interrupt(); }
             }
             master_playlist.addSongToPlaylist(temp_song);
         }
 
-        List<Song> current_playlist = master_playlist.getPlaylistContents();
-
         for (int i=0; i<EXIT; i++) {
-            Random rand = new Random();
-            Song current_song = current_playlist.get(rand.nextInt(current_playlist.size()));
-
-            playSong(current_song);
+            Song current_song = master_playlist.playSong();
+            // Play the next song, unless no song exists (no songs left in playable list)
+            if(current_song != null) { playSong(current_song); }
+            else{ break; }
         }
 
         // If everything runs correctly, abort all threads and end with no error.
@@ -75,11 +69,8 @@ public class Shufflr {
 
     private static String fileExtension(File file) {
         String name = file.getName();
-        try {
-            return name.substring(name.lastIndexOf("."));
-        } catch (Exception e) {
-            return "";
-        }
+        try { return name.substring(name.lastIndexOf(".")); }
+        catch (Exception e) { return null; }
     }
 
     private static void playSong(Song song_to_play){
@@ -118,9 +109,7 @@ public class Shufflr {
             seconds = Integer.toString(song_seconds);
         }
 
-        String readable_form = song_minutes + ":" + seconds;
-
-        return readable_form;
+        return song_minutes + ":" + seconds;
     }
 
 }
