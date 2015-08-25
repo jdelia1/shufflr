@@ -25,9 +25,14 @@ public class Waitlist {
         max_songs = max;
     }
 
-    public void addSongToWaitlist(Song song){
+    public Boolean addSongToWaitlist(Song song){
         waitlist.add(song);
         songs_in_queue++;
+        return songs_in_queue > DEFAULT;
+    }
+
+    public Song popSong(){
+        return waitlist.poll();
     }
 
     public Queue<Song> getWaitlist(){

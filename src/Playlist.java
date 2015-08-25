@@ -44,7 +44,11 @@ public class Playlist {
         if(current_songs.getNumSongs() > 0) {
             Integer song_index = rand_generator.nextInt(current_songs.getNumSongs());
             Song song_to_play = current_songs.moveSongAtIndex(song_index);
-            waitlist.addSongToWaitlist(song_to_play);
+            // Returns top song in queue if max songs.
+            if(waitlist.addSongToWaitlist(song_to_play)){
+                Song returned_song = waitlist.popSong();
+                current_songs.addSongToWaitingList(returned_song);
+            };
 
             return song_to_play;
         }else{
