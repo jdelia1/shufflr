@@ -38,7 +38,7 @@ public class Shufflr {
         }
 
         for (int i=0; i<EXIT; i++) {
-            Song current_song = master_playlist.playSong();
+            Song current_song = master_playlist.getNextSong();
             // Play the next song, unless no song exists (no songs left in playable list)
             if(current_song != null) { playSong(current_song); }
             else{ break; }

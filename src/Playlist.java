@@ -39,12 +39,13 @@ public class Playlist {
         can_be_deleted = false;  // Cannot delete master playlist, it contains all songs.
     }
 
-    public Song playSong(){
+    public Song getNextSong(){
         Random rand_generator = new Random();
         if(current_songs.getNumSongs() > 0) {
             Integer song_index = rand_generator.nextInt(current_songs.getNumSongs());
             Song song_to_play = current_songs.moveSongAtIndex(song_index);
-            // Returns top song in queue if max songs.
+            // Adds song to the waitlist, and checks to see if waitlist is full.
+            // If waitlist is full, move top song in queue back to possible songs list.
             if(waitlist.addSongToWaitlist(song_to_play)){
                 Song returned_song = waitlist.popSong();
                 current_songs.addSongToWaitingList(returned_song);
