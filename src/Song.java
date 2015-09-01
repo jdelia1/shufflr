@@ -1,15 +1,11 @@
 /**
  * Created by Joe Delia on 8/20/2015.
- * Last Edited on 8/26/2015.
+ * Last Edited on 8/27/2015.
  */
 
-import javax.sound.sampled.AudioFileFormat;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
-
-import com.sun.org.apache.xpath.internal.operations.Bool;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.util.Duration;

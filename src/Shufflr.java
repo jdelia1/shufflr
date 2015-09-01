@@ -1,6 +1,6 @@
 /**
  * Created by Joe Delia on 8/20/2015.
- * Last Edited on 8/26/2015.
+ * Last Edited on 9/1/2015.
  */
 
 import java.io.*;
@@ -15,6 +15,8 @@ public class Shufflr {
     private static MediaPlayer mediaPlayer;
 
     public static void main(String[] args){
+        // Shufflr Window
+        ShufflrWindow shufflr = new ShufflrWindow();
         // JFX Panel
         JFXPanel fxPanel = new JFXPanel();
         // Playlist of all songs available. Not able to be deleted.
@@ -39,6 +41,10 @@ public class Shufflr {
 
         for (int i=0; i<EXIT; i++) {
             Song current_song = master_playlist.getNextSong();
+            System.out.println("Songs that can be played:");
+            for (int j=0; j<master_playlist.getCurrentSongs().getWaitingList().size(); j++){
+                System.out.println(master_playlist.getCurrentSongs().getWaitingList().get(j).getName());
+            }
             // Play the next song, unless no song exists (no songs left in playable list)
             if(current_song != null) { playSong(current_song); }
             else{ break; }
